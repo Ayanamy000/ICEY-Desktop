@@ -1,0 +1,5 @@
+const {_electron:electron}=require('playwright');
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..');
+async function run(){const profile=fs.mkdtempSync(path.join(root,'verification/quit-profile-'));const app=await electron.launch({executablePath:path.join(root,'node_modules/electron/dist/electron.exe'),args:[root,'--user-data-dir='+profile]});try{let panel;for(let i=0;i<100;i++){panel=app.windows().find(p=>p.url().includes('panel.html'));if(panel)break;await new Promise(r=>setTimeout(r,100));}assert.ok(panel);await panel.evaluate(()=>window.icey.windowAction('quit')).catch(()=>{});const process=app.process();const code=await Promise.race([new Promise(r=>process.once('exit',r)),new Promise((_,reject)=>setTimeout(()=>reject(Error('Quit did not stop Electron')),8000))]);assert.equal(code,0);console.log('Quit passed: Electron exited cleanly.');}finally{await app.close().catch(()=>{});}}
+run().catch(e=>{console.error(e);process.exitCode=1;});

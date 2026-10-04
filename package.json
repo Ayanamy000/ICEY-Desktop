@@ -1,0 +1,44 @@
+{
+  "name": "icey-desktop-companion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ICEY 桌宠与 CRT 桌面助手",
+  "main": "src/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "check": "node tools/check.cjs",
+    "test": "node --test tests/*.test.cjs",
+    "build": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build-launcher.ps1",
+    "release": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/package-release.ps1",
+    "source:package": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/package-source.ps1"
+  },
+  "author": "ICEY Desktop Project",
+  "build": {
+    "appId": "icey.desktop.companion",
+    "productName": "ICEY Desktop",
+    "executableName": "ICEY",
+    "asar": false,
+    "electronDist": "node_modules/electron/dist",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "docs/**/*",
+      "README.md",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "dir"
+      ],
+      "icon": "build/icon.ico",
+      "signExecutable": false
+    }
+  },
+  "devDependencies": {
+    "electron": "^42.0.0",
+    "electron-builder": "^26.15.3"
+  }
+}

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+verification/
+*.log
+.env
+.env.*
+*.sqlite
+*.sqlite-*
+state.json
+plugins.json
+build/launcher.exe

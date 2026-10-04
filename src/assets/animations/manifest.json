@@ -1,0 +1,25 @@
+{
+  "source": "ICEY / Spine 2.1.27",
+  "animations": {
+    "Idle": {
+      "duration": 2,
+      "count": 60
+    },
+    "Run": {
+      "duration": 1.1666666,
+      "count": 35
+    },
+    "Atk1": {
+      "duration": 0.46666667,
+      "count": 15
+    },
+    "Atk2": {
+      "duration": 0.43333334,
+      "count": 14
+    },
+    "Atk3": {
+      "duration": 0.6,
+      "count": 19
+    }
+  }
+}
